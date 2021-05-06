@@ -1,0 +1,41 @@
+id: custom_games
+label: Custom game node migration from Drupal 8
+migration_group: default
+dependencies:
+  enforced:
+    module:
+      - train
+source:
+  plugin: custom_games
+  key: migrate
+destination:
+  plugin: entity:node
+  bundle: game
+process:
+  nid: nid
+  vid: vid
+  type: type
+  langcode:
+    plugin: static_map
+    bypass: true
+    source: language
+    map:
+      und: en
+  title: title
+  uid: uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  'body/format':
+    plugin: static_map
+    bypass: true
+    source: body_format
+    map:
+      1: plain_text
+      2: restricted_html
+      3: full_html
+      4: full_html
+  'body/value': body_value
+  'body/summary': body_summary
